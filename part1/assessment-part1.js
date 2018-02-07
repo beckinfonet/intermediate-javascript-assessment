@@ -162,7 +162,7 @@ var theAnswer = "Unknown";
 
 // CODE HERE...
 function promiseCatcher(arg) {
-  arg.then(result => {
-    theAnswer = result;
+  arg.then(res => {
+    theAnswer = res;
   });
 }
