@@ -13,8 +13,9 @@
 // return the result of your updateAnimal invocation
 
 // CODE HERE...
-
-
+function callBinding(magicAnimals, updateAnimal, id) {
+  return updateAnimal("Trogdor");
+}
 
 // *************
 // * PROBLEM 2 *
@@ -29,7 +30,13 @@
 
 // CODE HERE...
 
-
+function applyBinding(magicAnimals, updateAnimal, id) {
+  let result = magicAnimals.filter((item, i) => {
+    if (item.id === id) {
+      return updateAnimal.call(item, ["being majestic", "eating rainbows"]);
+    }
+  });
+}
 
 // *************
 // * PROBLEM 3 *
@@ -41,7 +48,7 @@
 // NOTE: $q is an injected library, that works like angular's $q object.
 // promiseMe will be invoked by a test and the test will expect a promise back.
 // In your function, create a custom promise, then create a timeout with a duration of 20 ms.
-// The timeout function should update the variable foo (seen below) to equal 'bar'.
+// The timeout function should update the variable foo (seen bitemow) to equal 'bar'.
 // After the timeout is completed, the promise should be resolved with the new updated foo variable.
 // NOTE: Manually invoking your function here will alter the 'foo' variable before tests run, causing them to fail.
 
@@ -49,8 +56,14 @@ var foo;
 
 // CODE HERE...
 
-
-
+function promiseMe($q) {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      foo = "bar";
+      resolve(foo);
+    }, 20);
+  });
+}
 // *************
 // * PROBLEM 4 *
 // *************
@@ -64,3 +77,12 @@ var foo;
 // and then resolve the array as you complete your promise.
 
 // CODE HERE...
+function emailList($q, $http) {
+  let emails = [];
+  return new Promise(resolve =>
+    $http.get("/api/users").then(response => {
+      emails = response.data.map(item => item.email);
+      resolve(emails);
+    })
+  );
+}
