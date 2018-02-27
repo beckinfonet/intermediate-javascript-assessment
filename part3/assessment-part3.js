@@ -31,11 +31,8 @@ function callBinding(magicAnimals, updateAnimal, id) {
 // CODE HERE...
 
 function applyBinding(magicAnimals, updateAnimal, id) {
-  let result = magicAnimals.filter((item, i) => {
-    if (item.id === id) {
-      return updateAnimal.call(item, ["being majestic", "eating rainbows"]);
-    }
-  });
+  let result = magicAnimals.filter(elem => elem.id === id)[0];
+  return updateAnimal.apply(result, ["being majestic", "eating rainbows"]);
 }
 
 // *************
